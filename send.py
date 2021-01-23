@@ -1,11 +1,14 @@
 import socket               # Import socket module
+import json
+
+with open("./ips.json") as file:
+	ips = json.load(file)
 
 s = socket.socket()         # Create a socket object
 # host = socket.gethostname() # Get local machine name
 port = 21                 # Reserve a port for your service.
 
-s.connect((host, port))
-s.send('Hello world!'.encode('utf-8'))
+s.connect((ips["trigati"], port))
 f = open('tosend.png','rb')
 print('Sending...')
 l = f.read(1024)
